@@ -1,0 +1,36 @@
+# Confidentialité : seuls README.md, SECURITY.md et CHANGELOG.md (racine) sont publics
+*.md
+!/README.md
+!/SECURITY.md
+!/CHANGELOG.md
+docs/
+
+# Secrets et données locales
+.env
+.env.*
+!.env.example
+data/
+*.db
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node / frontend
+node_modules/
+frontend/dist/
+playwright-report/
+test-results/
+
+# Éditeurs / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

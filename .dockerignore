@@ -1,0 +1,35 @@
+.git
+.github
+.claude
+docs/
+*.md
+!README.md
+
+# Secrets et données locales
+.env
+.env.*
+data/
+*.db
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node / frontend
+node_modules/
+frontend/dist/
+playwright-report/
+test-results/
+
+# Éditeurs / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
