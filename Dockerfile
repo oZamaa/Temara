@@ -26,6 +26,11 @@ RUN uv sync --frozen --no-dev --no-install-project
 
 # ---- 3. Image finale -------------------------------------------------------
 FROM ${PYTHON_IMAGE} AS final
+# Correctif de sécurité Debian non encore inclus dans l'image de base (CVE-2026-85091).
+# À retirer quand le digest de python:3.12-slim embarque zlib1g >= 1:1.3.dfsg+really1.3.1-1+deb13u1.
+# hadolint ignore=DL3008
+RUN apt-get update     && apt-get install --yes --no-install-recommends --only-upgrade zlib1g     && rm -rf /var/lib/apt/lists/*
+
 RUN groupadd --gid 10001 jobtrack \
     && useradd --uid 10001 --gid 10001 --no-create-home --shell /usr/sbin/nologin jobtrack \
     && mkdir /data \
