@@ -1,0 +1,24 @@
+services:
+  jobtrack:
+    build: .
+    image: jobtrack:dev
+    restart: unless-stopped
+    # Publié sur la boucle locale uniquement : placer un reverse proxy HTTPS devant pour un accès distant.
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - jobtrack-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      JOBTRACK_LOG_LEVEL: INFO
+      # Étape 5 (authentification) : JOBTRACK_SECRET_KEY ou JOBTRACK_SECRET_KEY_FILE (Docker secret).
+      # JOBTRACK_COOKIE_SECURE: "true"   # derrière HTTPS
+
+volumes:
+  jobtrack-data:
