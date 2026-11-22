@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/* Tokens de design : valeurs définitives extraites des maquettes à l'étape 7. */
+:root {
+  --bg-app: #f0f0f0;
+  --text: #111111;
+  --text-muted: #666666;
+}
+
+:root.dark {
+  --bg-app: #0a0a0a;
+  --text: #f2f2f2;
+  --text-muted: #a0a0a0;
+}
+
+@theme inline {
+  --color-bg-app: var(--bg-app);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text);
+}
