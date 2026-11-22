@@ -19,17 +19,19 @@ typecheck:
     cd backend && uv run mypy
     cd frontend && pnpm typecheck
 
+# Construit le frontend (vérification) puis l'image Docker
 build:
     cd frontend && pnpm build
+    docker build --tag jobtrack:dev .
 
 # Régénère le schéma OpenAPI et les types TypeScript
 gen-api:
     cd backend && uv run python -c "import json; from app.main import app; open('../frontend/openapi.json', 'w', encoding='utf-8').write(json.dumps(app.openapi(), indent=2, ensure_ascii=False) + '\n')"
     cd frontend && pnpm gen-api && pnpm exec prettier --write openapi.json
 
-# Étape 2 (Docker)
-up:
-    @echo "Pas encore disponible : voir étape 2 (Docker)." && exit 1
+# Lance l'application dans Docker : http://127.0.0.1:8000
+up: build
+    docker compose up
 
 # Étape 4 (base de données)
 migrate:

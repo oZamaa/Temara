@@ -11,6 +11,8 @@ class Settings(BaseSettings):
 
     data_dir: Path = Path("/data")
     log_level: str = "INFO"
+    # Directory of the built frontend. When unset, only the API is served (dev mode).
+    static_dir: Path | None = None
 
 
 @lru_cache
