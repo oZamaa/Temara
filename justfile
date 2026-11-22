@@ -22,7 +22,7 @@ typecheck:
 # Construit le frontend (vérification) puis l'image Docker
 build:
     cd frontend && pnpm build
-    docker compose build
+    docker build --tag jobtrack:dev .
 
 # Régénère le schéma OpenAPI et les types TypeScript
 gen-api:
@@ -30,8 +30,8 @@ gen-api:
     cd frontend && pnpm gen-api && pnpm exec prettier --write openapi.json
 
 # Lance l'application dans Docker : http://127.0.0.1:8000
-up:
-    docker compose up --build
+up: build
+    docker compose up
 
 # Étape 4 (base de données)
 migrate:
